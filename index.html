@@ -1,408 +1,983 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>亚洲市场资产配置分析 · 2026年6月</title>
-<link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/base.css">
-<link rel="stylesheet" id="theme-link" href="assets/themes/tokyo-night.css">
-<link rel="stylesheet" href="assets/animations/animations.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>亚洲市场资产配置报告 · 2026年6月</title>
+<style>
+/* ===== FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap');
+
+/* ===== BASE RESET & TOKENS ===== */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f7f8;
+  --surface: #ffffff;
+  --surface-2: #f2f2f4;
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.16);
+  --text-1: #111216;
+  --text-2: #55596a;
+  --text-3: #8a8f9e;
+  --accent: #3b6cff;
+  --accent-2: #7a5cff;
+  --accent-3: #ff5c8a;
+  --good: #1aaf6c;
+  --warn: #f5a524;
+  --bad: #e0445a;
+  --grad: linear-gradient(135deg,#3b6cff,#7a5cff 55%,#ff5c8a);
+  --grad-soft: linear-gradient(135deg,#eef2ff,#f5ecff 55%,#ffeef5);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 26px;
+  --shadow: 0 10px 30px rgba(18,24,40,.08), 0 2px 6px rgba(18,24,40,.04);
+  --shadow-lg: 0 24px 60px rgba(18,24,40,.14), 0 6px 16px rgba(18,24,40,.06);
+  --font-sans: 'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  --font-serif: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-mono: 'JetBrains Mono','IBM Plex Mono',SFMono-Regular,Menlo,monospace;
+  --font-display: var(--font-sans);
+  --letter-tight: -.03em;
+  --letter-normal: -.01em;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text-1);
+  font-family:var(--font-sans);font-weight:400;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  letter-spacing:var(--letter-normal)}
+img,svg,video{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+
+/* ===== SLIDE SYSTEM ===== */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg)}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px 96px;
+  box-sizing:border-box;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+  transform:translateX(30px);
+  overflow:hidden;
+}
+.slide.is-active{opacity:1;pointer-events:auto;transform:translateX(0);z-index:2}
+.slide.is-prev{transform:translateX(-30px)}
+body.single .slide{position:relative;width:100vw;height:100vh;opacity:1;transform:none;pointer-events:auto}
+
+/* ===== TYPOGRAPHY ===== */
+.eyebrow{font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3)}
+.kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+h1.title,.h1{font-family:var(--font-display);font-size:72px;line-height:1.05;font-weight:800;letter-spacing:var(--letter-tight);margin:0 0 18px;color:var(--text-1)}
+h2.title,.h2{font-family:var(--font-display);font-size:54px;line-height:1.1;font-weight:700;letter-spacing:var(--letter-tight);margin:0 0 14px}
+h3,.h3{font-size:32px;line-height:1.2;font-weight:600;letter-spacing:var(--letter-normal);margin:0 0 10px}
+h4,.h4{font-size:22px;line-height:1.3;font-weight:600;margin:0 0 8px}
+.lede{font-size:22px;line-height:1.55;color:var(--text-2);font-weight:300;max-width:62ch}
+.dim{color:var(--text-2)}
+.dim2{color:var(--text-3)}
+.mono{font-family:var(--font-mono)}
+.serif{font-family:var(--font-serif)}
+
+/* ===== LAYOUT ===== */
+.stack>*+*{margin-top:14px}
+.row{display:flex;gap:24px;align-items:center}
+.row.wrap{flex-wrap:wrap}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.center{display:flex;align-items:center;justify-content:center;text-align:center}
+.fill{flex:1}
+.mt-s{margin-top:8px}.mt-m{margin-top:18px}.mt-l{margin-top:32px}
+.mb-s{margin-bottom:8px}.mb-m{margin-bottom:18px}.mb-l{margin-bottom:32px}
+
+/* ===== CARDS ===== */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card-soft{background:var(--surface-2);border:1px solid var(--border)}
+.card-outline{background:transparent;border:1.5px solid var(--border-strong);box-shadow:none}
+.card-accent{background:var(--surface);border-top:3px solid var(--accent)}
+.card-hover{transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card-hover:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:500;
+  background:var(--surface-2);color:var(--text-2);border:1px solid var(--border)}
+.pill-accent{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+
+/* ===== DIVIDERS ===== */
+.divider{height:1px;background:var(--border);width:100%}
+.divider-accent{height:3px;width:72px;background:var(--accent);border-radius:2px}
+
+/* ===== CHROME ===== */
+.deck-header{position:absolute;top:24px;left:40px;right:40px;display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;z-index:10;pointer-events:none}
+.deck-footer{position:absolute;bottom:24px;left:40px;right:40px;display:flex;align-items:center;justify-content:space-between;
+  font-size:13px;color:var(--text-3);z-index:10;pointer-events:none}
+.slide-number::before{content:attr(data-current)}
+.slide-number::after{content:" / " attr(data-total)}
+.progress-bar{position:fixed;left:0;right:0;bottom:0;height:4px;background:transparent;z-index:20}
+.progress-bar > span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s var(--ease)}
+
+/* ===== OVERVIEW ===== */
+.notes{display:none!important}
+.notes-overlay{position:fixed;inset:auto 0 0 0;max-height:42vh;background:rgba(20,22,30,.95);color:#e8ebf4;
+  padding:20px 32px;font-size:16px;line-height:1.6;border-top:1px solid rgba(255,255,255,.1);transform:translateY(100%);
+  transition:transform .3s var(--ease);z-index:40;overflow:auto;font-family:var(--font-sans)}
+.notes-overlay.open{transform:translateY(0)}
+.overview{position:fixed;inset:0;background:rgba(10,12,18,.92);backdrop-filter:blur(12px);z-index:50;
+  display:none;padding:40px;overflow:auto}
+.overview.open{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-content:start}
+
+/* ===== ANIMATIONS ===== */
+:root{--anim-dur:.7s;--anim-ease:cubic-bezier(.4,0,.2,1)}
+@keyframes kf-fade-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes kf-fade-down{from{opacity:0;transform:translateY(-32px)}to{opacity:1;transform:none}}
+@keyframes kf-fade-left{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes kf-fade-right{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes kf-rise{from{opacity:0;transform:translateY(60px) scale(.97);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes kf-drop{from{opacity:0;transform:translateY(-60px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes kf-zoom{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+@keyframes kf-blur{from{opacity:0;filter:blur(18px)}to{opacity:1;filter:none}}
+.anim-fade-up{animation:kf-fade-up var(--anim-dur) var(--anim-ease) both}
+.anim-fade-down{animation:kf-fade-down var(--anim-dur) var(--anim-ease) both}
+.anim-fade-left{animation:kf-fade-left var(--anim-dur) var(--anim-ease) both}
+.anim-fade-right{animation:kf-fade-right var(--anim-dur) var(--anim-ease) both}
+.anim-rise-in{animation:kf-rise .9s var(--anim-ease) both}
+.anim-drop-in{animation:kf-drop .8s var(--anim-ease) both}
+.anim-zoom-pop{animation:kf-zoom .7s cubic-bezier(.22,1.3,.36,1) both}
+.anim-blur-in{animation:kf-blur .8s var(--anim-ease) both}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  [class*="anim-"]{animation:none!important;transition:none!important}
+}
+
+/* ===== COURSE-MODULE TEMPLATE STYLES ===== */
+/* Large font overrides for teaching presentation */
+.tpl-course-module{
+  --bg:#fbfaf6;--bg-soft:#f4f1e8;--surface:#ffffff;--surface-2:#f6f3ea;
+  --border:rgba(60,45,20,.12);--border-strong:rgba(60,45,20,.24);
+  --text-1:#2a2418;--text-2:#5a5140;--text-3:#8a7f68;
+  --accent:#c4593f;--accent-2:#d88a3a;--accent-3:#2d7d6e;
+  --grad:linear-gradient(135deg,#c4593f,#d88a3a);
+  --radius:14px;--radius-lg:20px;
+  --shadow:0 12px 30px rgba(60,45,20,.07);
+  font-family:'Inter','Noto Sans SC',sans-serif;
+}
+.tpl-course-module .slide{
+  padding:56px 72px;
+  background:var(--bg);
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:56px;
+  align-content:start;
+}
+.tpl-course-module .slide.full{
+  grid-template-columns:1fr;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.tpl-course-module .sidebar{
+  border-right:1px solid var(--border);
+  padding-right:32px;
+  position:relative;
+}
+.tpl-course-module .sidebar .brand{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  font-weight:700;
+  color:var(--accent);
+}
+.tpl-course-module .sidebar .brand::before{content:"✦ ";color:var(--accent-2)}
+.tpl-course-module .sidebar h5{
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--text-3);
+  margin:32px 0 14px;
+}
+.tpl-course-module .obj-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-size:16px;
+  color:var(--text-2);
+  line-height:1.5;
+}
+.tpl-course-module .obj-list li{
+  padding:10px 0 10px 26px;
+  position:relative;
+  border-bottom:1px dashed var(--border);
+}
+.tpl-course-module .obj-list li::before{
+  content:"○";
+  position:absolute;
+  left:0;
+  top:10px;
+  color:var(--accent);
+  font-size:14px;
+}
+.tpl-course-module .obj-list li.done::before{content:"●";color:var(--accent)}
+.tpl-course-module .obj-list li.current{
+  color:var(--text-1);
+  font-weight:700;
+  font-size:17px;
+}
+.tpl-course-module .obj-list li.current::before{content:"▸";color:var(--accent-2)}
+.tpl-course-module .main{min-width:0}
+
+/* LARGE FONT OVERRIDES */
+.tpl-course-module .h1{
+  font-family:'Playfair Display','Noto Serif SC',serif;
+  font-size:4.5em;
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--text-1);
+}
+.tpl-course-module .slide.full .h1{font-size:5em}
+.tpl-course-module .h2{
+  font-family:'Playfair Display','Noto Serif SC',serif;
+  font-size:2.8em;
+  line-height:1.1;
+  font-weight:700;
+  letter-spacing:-.015em;
+  color:var(--text-1);
+}
+.tpl-course-module h3,.tpl-course-module h4{color:var(--text-1)}
+.tpl-course-module h3{font-size:1.8em;line-height:1.25;font-weight:600}
+.tpl-course-module h4{font-size:1.5em;line-height:1.3;font-weight:600}
+.tpl-course-module .kicker{
+  color:var(--accent-2);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.14em;
+}
+.tpl-course-module .lede{
+  font-size:1.4em;
+  color:var(--text-2);
+  line-height:1.7;
+}
+.tpl-course-module .callout{
+  border-left:5px solid var(--accent-2);
+  background:var(--surface-2);
+  padding:22px 28px;
+  border-radius:0 var(--radius) var(--radius) 0;
+  margin-top:24px;
+  font-size:1.15em;
+  line-height:1.7;
+}
+.tpl-course-module .callout b{color:var(--accent-2)}
+.tpl-course-module .concept-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:26px 28px;
+  box-shadow:var(--shadow);
+  font-size:1.15em;
+}
+.tpl-course-module .concept-box h4{margin-top:0;color:var(--accent);font-size:1.3em}
+.tpl-course-module .concept-box p.dim{font-size:1em;line-height:1.6}
+.tpl-course-module .pill-academic{
+  display:inline-block;
+  padding:6px 16px;
+  border-radius:4px;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  font-size:14px;
+  color:var(--text-2);
+  font-family:'JetBrains Mono',monospace;
+}
+.tpl-course-module .deck-footer{color:var(--text-3);font-size:14px}
+
+/* ===== TABLE STYLES ===== */
+.data-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:1.2em;
+  margin-top:12px;
+}
+.data-table th{
+  text-align:left;
+  padding:14px 18px;
+  background:var(--surface-2);
+  color:var(--text-2);
+  font-weight:600;
+  font-size:0.9em;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  border-bottom:2px solid var(--border-strong);
+}
+.data-table td{
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  color:var(--text-1);
+  font-weight:500;
+}
+.data-table tr:last-child td{border-bottom:none}
+.data-table .down{color:var(--accent);font-weight:700}
+.data-table .highlight-row{background:var(--surface-2)}
+.data-table .num{font-family:'JetBrains Mono',monospace;font-weight:600;text-align:right}
+
+/* ===== SCORE BAR ===== */
+.score-bar-wrap{display:flex;align-items:center;gap:12px;margin:4px 0}
+.score-bar-label{min-width:90px;font-weight:600;font-size:0.95em}
+.score-bar-track{flex:1;height:22px;background:var(--surface-2);border-radius:11px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:11px;transition:width .8s var(--ease)}
+.score-bar-val{min-width:50px;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.95em}
+
+/* ===== METRIC BOX ===== */
+.metric-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px 22px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(60,45,20,.05);
+}
+.metric-box .metric-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:2em;
+  font-weight:700;
+  color:var(--text-1);
+}
+.metric-box .metric-label{font-size:0.85em;color:var(--text-3);margin-top:4px}
+.metric-box .metric-delta{font-size:1.1em;font-weight:700;margin-top:2px}
+.metric-box .metric-delta.down{color:var(--accent)}
+
+/* ===== UTILITY ===== */
+.hidden{display:none!important}
+.nowrap{white-space:nowrap}
+.tr{text-align:right}.tc{text-align:center}.tl{text-align:left}
+
+/* ===== PRINT ===== */
+@media print{
+  .slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}
+  .deck-header,.deck-footer,.progress-bar,.notes-overlay,.overview{display:none!important}
+}
+</style>
 </head>
-<body data-theme-base="assets/themes/" data-themes="tokyo-night,editorial-serif,corporate-clean,dracula,nord,catppuccin-mocha,minimal-white,pitch-deck-vc,arctic-cool">
-
+<body class="tpl-course-module">
 <div class="deck">
-<!-- ===== SLIDE 1: COVER ===== -->
-<section class="slide is-active">
-  <div class="cover-bg"></div>
-  <div class="cover-grid"></div>
-  <div style="position:relative;z-index:2;">
-    <div class="kicker" style="font-size:22px;">2026年6月5日 · 资产配置策略</div>
-    <h1 class="large-title" style="margin-top:16px;">亚洲市场<br><span class="gradient-text">资产配置分析</span></h1>
-    <p class="title-sub">A股 · 港股 · 日股 · 韩股 —— 结构化分化下的防御反击策略</p>
-    <div style="margin-top:30px;display:flex;gap:20px;">
-      <span class="badge badge-down" style="font-size:22px;padding:6px 18px;">全市场下跌</span>
-      <span class="badge badge-up" style="font-size:22px;padding:6px 18px;">逆向配置窗口</span>
+
+  <!-- ===== SLIDE 1: COVER ===== -->
+  <section class="slide full" data-title="封面">
+    <p class="kicker">资产配置报告 · 2026年6月7日</p>
+    <h1 class="h1 mt-s">亚洲市场<br><em>资产配置策略</em></h1>
+    <p class="lede mt-l" style="max-width:64ch;font-size:1.5em">基于多因子打分模型与再平衡方法论，穿越市场波动，构建跨区域最优风险收益组合。</p>
+    <div class="row mt-l" style="gap:16px">
+      <span class="pill-academic">覆盖8大指数</span>
+      <span class="pill-academic">A股 · 港股 · 日韩</span>
+      <span class="pill-academic">多因子量化框架</span>
     </div>
-  </div>
-  <div class="deck-footer-custom"><span>亚洲市场资产配置报告</span><span>01 / 10</span></div>
-</section>
+    <div class="deck-footer"><span>亚洲市场研究团队 · 2026</span><span class="slide-number" data-current="1" data-total="10"></span></div>
+  </section>
 
-<!-- ===== SLIDE 2: MARKET SNAPSHOT ===== -->
-<section class="slide">
-  <h2>市场快照 <span style="color:var(--text-3);font-size:28px;">2026.06.05</span></h2>
-  <p class="lede" style="font-size:26px;margin-bottom:16px;">亚太主要股指普遍收跌，韩国市场重挫 -5.54%，A 股内部结构分化显著</p>
-  <table class="market-table">
-    <thead><tr><th>市场</th><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
-    <tbody>
-      <tr><td>🇨🇳 A股</td><td>上证指数</td><td class="num">4,027.74</td><td class="chg neg">-0.74%</td></tr>
-      <tr><td>🇨🇳 A股</td><td>沪深300</td><td class="num">4,816.92</td><td class="chg neg">-1.79%</td></tr>
-      <tr><td>🇨🇳 A股</td><td>创业板指</td><td class="num">3,957.94</td><td class="chg neg">-3.20%</td></tr>
-      <tr><td>🇨🇳 A股</td><td style="color:var(--accent);">科创50</td><td class="num">1,668.33</td><td class="chg severe" style="color:var(--bad);font-size:28px;">-4.01%</td></tr>
-      <tr><td>🇨🇳 A股</td><td>中证500</td><td class="num">8,251.14</td><td class="chg neg">-1.26%</td></tr>
-      <tr><td>🇭🇰 港股</td><td>恒生指数</td><td class="num">24,961.95</td><td class="chg neg">-1.15%</td></tr>
-      <tr><td>🇭🇰 港股</td><td>恒生国企</td><td class="num">8,436.63</td><td class="chg neg">-0.77%</td></tr>
-      <tr><td>🇯🇵 日股</td><td>日经225</td><td class="num">66,588.12</td><td class="chg neg">-1.31%</td></tr>
-      <tr><td style="color:var(--bad);">🇰🇷 韩股</td><td style="color:var(--bad);">韩国KOSPI</td><td class="num" style="color:var(--bad);">8,160.59</td><td class="chg severe" style="color:var(--bad);font-size:30px;">-5.54%</td></tr>
-    </tbody>
-  </table>
-  <div class="deck-footer-custom"><span>数据来源: Wind / Bloomberg</span><span>02 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 3: A股分化 ===== -->
-<section class="slide">
-  <h2>A股<span class="gradient-text">结构分化</span>分析</h2>
-  <p class="lede" style="font-size:28px;">主板稳固 vs 成长崩塌 —— 内部差距高达 <span class="c-bad">3.27pp</span></p>
-
-  <div style="display:flex;gap:30px;margin-top:32px;">
-    <div style="flex:1;">
-      <div class="data-card negative" style="margin-bottom:16px;">
-        <div class="label">科创50 · 跌幅最大</div>
-        <div class="value" style="font-size:56px;">-4.01%</div>
-        <div class="sub">科技成长股遭遇集中抛售</div>
-      </div>
-      <div class="data-card negative">
-        <div class="label">创业板指</div>
-        <div class="value" style="font-size:48px;">-3.20%</div>
-        <div class="sub">中小盘成长同步承压</div>
-      </div>
-    </div>
-    <div style="flex:1;">
-      <div class="data-card warn-card" style="margin-bottom:16px;">
-        <div class="label">上证指数 · 相对抗跌</div>
-        <div class="value" style="color:var(--warn);font-size:48px;">-0.74%</div>
-        <div class="sub">大盘蓝筹提供防御支撑</div>
-      </div>
-      <div class="data-card warn-card">
-        <div class="label">沪深300</div>
-        <div class="value" style="color:var(--warn);font-size:42px;">-1.79%</div>
-        <div class="sub">权重股整体偏弱但可控</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="insight-card" style="margin-top:28px;">
-    <h3>核心洞察</h3>
-    <p>资金从高估值成长板块向低估值蓝筹迁移，市场风险偏好急剧收缩。科创50与上证指数差距达 <b>3.27pp</b>，为近三个月最大。</p>
-  </div>
-  <div class="deck-footer-custom"><span>结构化分化 · A股内部</span><span>03 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 4: 配置策略 ===== -->
-<section class="slide">
-  <h2>资产配置<span class="gradient-text">策略</span></h2>
-  <p class="lede" style="font-size:28px;">减成长 / 增价值 / 加防御 —— 三线并进</p>
-
-  <div class="analysis-row">
-    <div class="analysis-box bad-box">
-      <h4>🔻 减配</h4>
-      <ul>
-        <li>科创50 — 动量崩溃</li>
-        <li>创业板指 — 高估值承压</li>
-        <li>中小盘成长 — 流动性收缩</li>
+  <!-- ===== SLIDE 2: 学习目标 ===== -->
+  <section class="slide" data-title="学习目标">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="current">掌握市场全景数据</li>
+        <li>理解A股结构分化</li>
+        <li>学会再平衡方法论</li>
+        <li>运用三因子打分模型</li>
+        <li>分析核心市场配置</li>
+        <li>评估日韩市场机会</li>
+        <li>制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
       </ul>
+      <h5>报告进度</h5>
+      <p class="dim" style="font-size:14px">第2页 / 共10页</p>
+    </aside>
+    <div class="main">
+      <p class="kicker">学习目标</p>
+      <h2 class="h2 mt-s">阅读本报告，你将掌握…</h2>
+      <div class="stack mt-l">
+        <div class="concept-box"><h4>① 亚洲8大核心指数全景扫描</h4><p class="dim">上证、沪深300、创业板、科创50、恒生、国企、日经225、韩国KOSPI 最新数据。</p></div>
+        <div class="concept-box"><h4>② A股市场结构分化深度分析</h4><p class="dim">科创50暴跌4.01% vs 上证微跌0.74%，差距3.27个百分点——背后的逻辑与应对。</p></div>
+        <div class="concept-box"><h4>③ 三种资产再平衡方法对比</h4><p class="dim">阈值触发法、信号驱动法、CPPI动态法——何时用哪种？优劣对比如数家珍。</p></div>
+        <div class="concept-box"><h4>④ 三因子打分 → 最终配置方案</h4><p class="dim">动量40% + 估值35% + 流动性25% → 得分映射仓位，科学决策。</p></div>
+      </div>
     </div>
-    <div class="analysis-box good-box">
-      <h4>🔺 增配</h4>
-      <ul>
-        <li>A股主板 — 高股息红利</li>
-        <li>港股 — 估值洼地</li>
-        <li>债券 — 30% 防御底仓</li>
+  </section>
+
+  <!-- ===== SLIDE 3: 市场快照 ===== -->
+  <section class="slide" data-title="市场快照">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="current">理解A股结构分化</li>
+        <li>学会再平衡方法论</li>
+        <li>运用三因子打分模型</li>
+        <li>分析核心市场配置</li>
+        <li>评估日韩市场机会</li>
+        <li>制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
       </ul>
+      <h5>数据日期</h5>
+      <p class="dim" style="font-size:14px">2026年6月7日收盘</p>
+    </aside>
+    <div class="main">
+      <p class="kicker">市场快照</p>
+      <h2 class="h2 mt-s">8大核心指数 · 全景一览</h2>
+      <table class="data-table mt-l">
+        <thead>
+          <tr><th>指数</th><th>最新点位</th><th>涨跌幅</th><th>市场</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>上证指数</td><td class="num">4,027.74</td><td class="num down">-0.74%</td><td>上海主板</td></tr>
+          <tr><td>沪深300</td><td class="num">4,816.92</td><td class="num down">-1.79%</td><td>沪深蓝筹</td></tr>
+          <tr><td>创业板指</td><td class="num">3,957.94</td><td class="num down">-3.20%</td><td>深圳成长</td></tr>
+          <tr class="highlight-row"><td>科创50</td><td class="num">1,668.33</td><td class="num down" style="font-size:1.15em">-4.01%</td><td>科创板</td></tr>
+          <tr><td>恒生指数</td><td class="num">24,961.95</td><td class="num down">-1.15%</td><td>香港主板</td></tr>
+          <tr><td>恒生国企</td><td class="num">8,436.63</td><td class="num down">-0.77%</td><td>H股</td></tr>
+          <tr><td>日经225</td><td class="num">66,588.12</td><td class="num down">-1.31%</td><td>日本</td></tr>
+          <tr class="highlight-row"><td>韩国KOSPI</td><td class="num">8,160.59</td><td class="num down" style="font-size:1.15em">-5.54%</td><td>韩国</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <b>关键信号：</b>亚洲市场普跌，韩国KOSPI领跌 -5.54%，A股内部科创50跌幅最深 -4.01%。主板抗跌性显著优于成长板块。
+      </div>
     </div>
-    <div class="analysis-box">
-      <h4>🔄 逆向</h4>
-      <ul>
-        <li>韩国KOSPI — 超卖反弹</li>
-        <li>日经225 — 逢低布局</li>
-        <li>现金保留 — 灵活机动</li>
+  </section>
+
+  <!-- ===== SLIDE 4: A股结构分化 ===== -->
+  <section class="slide" data-title="A股分化">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="done">理解A股结构分化</li>
+        <li class="current">学会再平衡方法论</li>
+        <li>运用三因子打分模型</li>
+        <li>分析核心市场配置</li>
+        <li>评估日韩市场机会</li>
+        <li>制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
       </ul>
-    </div>
-  </div>
-
-  <div style="display:flex;gap:40px;margin-top:30px;align-items:center;">
-    <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 30px;">
-      <div style="font-size:22px;color:var(--text-3);margin-bottom:6px;">策略核心</div>
-      <div style="font-size:44px;font-weight:800;color:var(--accent);">防御反击</div>
-      <div style="font-size:22px;color:var(--text-2);margin-top:8px;">防守端：债券+高股息 = 安全垫<br>进攻端：港股+逆向韩日 = 弹性</div>
-    </div>
-    <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 30px;">
-      <div style="font-size:22px;color:var(--text-3);margin-bottom:6px;">债券配置</div>
-      <div style="font-size:70px;font-weight:800;color:var(--good);">30%</div>
-      <div style="font-size:20px;color:var(--text-2);">中短久期利率债 + 高等级信用</div>
-    </div>
-  </div>
-  <div class="deck-footer-custom"><span>三线策略 · 防御反击</span><span>04 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 5: 方法论 ===== -->
-<section class="slide">
-  <h2>分析<span class="gradient-text">方法论</span></h2>
-  <p class="lede" style="font-size:26px;">量化 + 定性双轮驱动，三维因子综合评分</p>
-
-  <div class="method-row" style="margin-top:40px;">
-    <div class="method-card">
-      <div class="m-num" style="color:var(--accent);">40%</div>
-      <div class="m-label" style="font-size:26px;">动量因子</div>
-      <div class="m-desc" style="font-size:20px;">20日/60日价格动量<br>相对强弱 RSI<br>行业轮动强度</div>
-    </div>
-    <div class="method-card">
-      <div class="m-num" style="color:var(--accent-2);">35%</div>
-      <div class="m-label" style="font-size:26px;">估值因子</div>
-      <div class="m-desc" style="font-size:20px;">PE/PB 分位数<br>股息率水平<br>PEG 成长调整</div>
-    </div>
-    <div class="method-card">
-      <div class="m-num" style="color:var(--accent-3);">25%</div>
-      <div class="m-label" style="font-size:26px;">流动性因子</div>
-      <div class="m-desc" style="font-size:20px;">成交额变化率<br>北向/外资流向<br>融资余额趋势</div>
-    </div>
-  </div>
-
-  <div style="margin-top:36px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 30px;">
-    <div style="font-size:24px;color:var(--accent);margin-bottom:8px;">打分规则</div>
-    <div style="font-size:24px;line-height:1.8;color:var(--text-2);">
-      每个因子对8个标的独立打分（1-10分）→ 加权汇总 → 排名 → 分层配置
-    </div>
-  </div>
-  <div class="deck-footer-custom"><span>三因子模型 · 量化框架</span><span>05 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 6: 三因子打分 ===== -->
-<section class="slide">
-  <h2>三因子<span class="gradient-text">打分表</span></h2>
-  <p class="lede" style="font-size:26px;">动量崩塌拖累科创/创业，估值优势支撑港股和韩国逆向</p>
-  <table class="factor-table" style="margin-top:18px;">
-    <thead><tr><th>标的</th><th style="text-align:center;">动量 (40%)</th><th style="text-align:center;">估值 (35%)</th><th style="text-align:center;">流动性 (25%)</th><th style="text-align:center;">总分</th><th style="text-align:center;">评级</th></tr></thead>
-    <tbody>
-      <tr>
-        <td style="font-weight:600;">上证主板</td>
-        <td class="score c-warn">6.5</td><td class="score c-good">7.5</td><td class="score" style="color:var(--accent);">7.0</td>
-        <td class="total c-good">6.95</td><td style="color:var(--good);font-weight:700;font-size:24px;">增配</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">沪深300</td>
-        <td class="score" style="color:var(--warn);">5.5</td><td class="score c-good">7.0</td><td class="score" style="color:var(--accent);">6.5</td>
-        <td class="total" style="color:var(--text-1);">6.28</td><td style="color:var(--text-2);">标配</td>
-      </tr>
-      <tr style="background:rgba(247,118,142,.06);">
-        <td style="font-weight:600;">科创50</td>
-        <td class="score c-bad">2.5</td><td class="score c-bad">3.5</td><td class="score c-bad">3.0</td>
-        <td class="total c-bad">2.98</td><td style="color:var(--bad);font-weight:700;font-size:24px;">减配</td>
-      </tr>
-      <tr style="background:rgba(247,118,142,.04);">
-        <td style="font-weight:600;">创业板指</td>
-        <td class="score c-bad">3.0</td><td class="score" style="color:var(--warn);">4.5</td><td class="score c-bad">4.0</td>
-        <td class="total" style="color:var(--warn);">3.78</td><td style="color:var(--bad);font-weight:700;font-size:24px;">减配</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">恒生指数</td>
-        <td class="score" style="color:var(--warn);">5.0</td><td class="score c-good">8.5</td><td class="score" style="color:var(--accent);">6.5</td>
-        <td class="total c-good">6.60</td><td style="color:var(--good);font-weight:700;font-size:24px;">增配</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">日经225</td>
-        <td class="score" style="color:var(--warn);">5.5</td><td class="score" style="color:var(--accent);">6.5</td><td class="score" style="color:var(--accent);">6.0</td>
-        <td class="total" style="color:var(--text-1);">5.98</td><td style="color:var(--text-2);">标配</td>
-      </tr>
-      <tr style="background:rgba(158,206,106,.06);">
-        <td style="font-weight:600;">韩国KOSPI</td>
-        <td class="score c-bad">2.0</td><td class="score c-good">8.0</td><td class="score" style="color:var(--warn);">5.5</td>
-        <td class="total" style="color:var(--accent-3);">4.98</td><td style="color:var(--accent-3);font-weight:700;font-size:24px;">逆向</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="deck-footer-custom"><span>加权评分 = 动量×0.4 + 估值×0.35 + 流动性×0.25</span><span>06 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 7: 关键判断 ===== -->
-<section class="slide">
-  <h2>关键<span class="gradient-text">判断</span></h2>
-
-  <div style="display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
-      <div style="font-size:62px;margin-bottom:8px;">🔴</div>
-      <h3 style="color:var(--bad);font-size:34px;">判断一：科创/创业下行未止</h3>
-      <p style="font-size:24px;color:var(--text-2);line-height:1.7;">动量因子仅 2.5-3.0 分，成交额萎缩 30%+<br>融资余额连续5日净流出<br><span class="c-bad">建议减仓至 5%-10%</span></p>
-    </div>
-
-    <div style="flex:1;min-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
-      <div style="font-size:62px;margin-bottom:8px;">🟢</div>
-      <h3 style="color:var(--good);font-size:34px;">判断二：港股估值优势显著</h3>
-      <p style="font-size:24px;color:var(--text-2);line-height:1.7;">恒生PE仅9.2x，处于历史15%分位<br>南向资金持续净流入<br><span class="c-good">建议增配至 15%</span></p>
-    </div>
-
-    <div style="flex:1;min-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
-      <div style="font-size:62px;margin-bottom:8px;">🟡</div>
-      <h3 style="color:var(--warn);font-size:34px;">判断三：韩国超卖逆向机会</h3>
-      <p style="font-size:24px;color:var(--text-2);line-height:1.7;">-5.54% 单日跌幅为18个月最大<br>RSI进入超卖区（&lt;25）<br><span style="color:var(--accent-3);">建议逆向配置 10%+5%</span></p>
-    </div>
-  </div>
-  <div class="deck-footer-custom"><span>三大核心判断</span><span>07 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 8: 港股分析 ===== -->
-<section class="slide">
-  <h2>港股 <span style="color:var(--text-3);">·</span> <span class="gradient-text">深度分析</span></h2>
-  <div class="data-grid-2" style="margin-top:20px;">
-    <div>
-      <div class="data-card">
-        <div class="label">恒生指数</div>
-        <div class="value" style="font-size:48px;">24,961.95</div>
-        <div class="sub" style="color:var(--bad);font-size:22px;">-1.15%</div>
+      <h5>核心发现</h5>
+      <p class="dim" style="font-size:14px;line-height:1.6">A股内部最大差距<br>达 <b style="color:var(--accent);font-size:1.2em">3.27pp</b></p>
+    </aside>
+    <div class="main">
+      <p class="kicker">深度分析</p>
+      <h2 class="h2 mt-s">A股结构分化：主板 vs 成长</h2>
+      <p class="lede mt-m">四大指数表现差异悬殊——科创50与上证指数之间差距高达 <b>3.27个百分点</b>，揭示市场风格正从高风险成长向低估值价值迁移。</p>
+      <div class="grid g2 mt-l">
+        <div class="concept-box" style="border-left:4px solid var(--accent-3)">
+          <h4 style="color:var(--accent-3)">🛡️ 防御端（抗跌）</h4>
+          <p class="dim" style="margin:0">上证指数 <b style="color:var(--accent-3)">-0.74%</b> · 高股息蓝筹护盘<br>沪深300 <b style="color:var(--accent-3)">-1.79%</b> · 大盘价值相对稳健</p>
+        </div>
+        <div class="concept-box" style="border-left:4px solid var(--accent)">
+          <h4 style="color:var(--accent)">⚡ 进攻端（重挫）</h4>
+          <p class="dim" style="margin:0">创业板指 <b style="color:var(--accent)">-3.20%</b> · 成长股承压<br>科创50 <b style="color:var(--accent)">-4.01%</b> · 科技板块领跌</p>
+        </div>
       </div>
-      <div class="data-card" style="margin-top:14px;">
-        <div class="label">恒生国企指数</div>
-        <div class="value" style="font-size:48px;">8,436.63</div>
-        <div class="sub" style="color:var(--bad);font-size:22px;">-0.77%</div>
+      <div class="callout mt-m">
+        <b>策略应对：</b>减配科技成长仓位，增配主板高股息标的。风格切换信号明确——价值因子正在回归。
+      </div>
+      <div style="margin-top:16px">
+        <div class="score-bar-wrap">
+          <span class="score-bar-label">上证（主板）</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:85%;background:var(--accent-3)"></div></div>
+          <span class="score-bar-val">抗跌力 85</span>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-bar-label">科创50</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:18%;background:var(--accent)"></div></div>
+          <span class="score-bar-val">抗跌力 18</span>
+        </div>
       </div>
     </div>
-    <div>
-      <div class="insight-card" style="margin-top:0;">
-        <h3>估值亮点</h3>
-        <p>恒生PE <span class="c-good">9.2x</span> — 处于近5年 <span class="c-good">15%</span> 分位<br>
-        股息率 <span class="c-good">4.1%</span> — 亚太最高之一<br>
-        南向资金月净流入 <span class="c-accent">+420亿</span> 港元</p>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <div class="analysis-row" style="margin-top:28px;">
-    <div class="analysis-box good-box">
-      <h4>买入理由</h4>
-      <ul style="font-size:24px;line-height:2.2;">
-        <li>深度价值洼地</li>
-        <li>南向资金持续流入</li>
-        <li>国企改革红利释放</li>
-        <li>与A股相关性可控</li>
+  <!-- ===== SLIDE 5: 再平衡方法论 ===== -->
+  <section class="slide" data-title="再平衡方法">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="done">理解A股结构分化</li>
+        <li class="done">学会再平衡方法论</li>
+        <li class="current">运用三因子打分模型</li>
+        <li>分析核心市场配置</li>
+        <li>评估日韩市场机会</li>
+        <li>制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
       </ul>
+      <h5>方法论选择</h5>
+      <p class="dim" style="font-size:14px;line-height:1.6">当前市况推荐<br><b style="color:var(--accent-2)">信号驱动法</b></p>
+    </aside>
+    <div class="main">
+      <p class="kicker">方法论</p>
+      <h2 class="h2 mt-s">三种资产再平衡方法</h2>
+      <p class="lede mt-m">再平衡不是频繁交易，而是有纪律地恢复目标配置。选择正确的方法，等于选对了一半的策略。</p>
+      <div class="grid g3 mt-l">
+        <div class="concept-box">
+          <h4>① 阈值触发法</h4>
+          <p class="dim">当实际权重偏离目标权重超过预设阈值（如±5%），触发调仓。适合波动率中等的平稳市场。</p>
+          <p class="pill-academic" style="margin-top:8px">阈值设定：±5%</p>
+        </div>
+        <div class="concept-box" style="border:2px solid var(--accent-2);box-shadow:0 0 0 4px rgba(216,138,58,.12)">
+          <h4 style="color:var(--accent-2)">★ ② 信号驱动法</h4>
+          <p class="dim">结合多因子信号（动量/估值/流动性）动态调整。当因子得分穿越临界值时触发。推荐当前使用。</p>
+          <p class="pill-academic" style="margin-top:8px;background:rgba(216,138,58,.12);color:var(--accent-2)">当前推荐 ⚡</p>
+        </div>
+        <div class="concept-box">
+          <h4>③ CPPI动态法</h4>
+          <p class="dim">固定比例投资组合保险。设定保本底线，风险资产 = M × (总资产 - 保本底线)。适合极端波动市。</p>
+          <p class="pill-academic" style="margin-top:8px">乘数 M=3~5</p>
+        </div>
+      </div>
+      <div class="callout">
+        <b>当前选择逻辑：</b>信号驱动法适合结构性分化市场——各板块因子得分差异大，正是主动调仓的窗口期。
+      </div>
     </div>
-    <div class="analysis-box bad-box">
-      <h4>风险关注</h4>
-      <ul style="font-size:24px;line-height:2.2;">
-        <li>美联储政策不确定性</li>
-        <li>地缘政治溢价</li>
-        <li>港元流动性波动</li>
+  </section>
+
+  <!-- ===== SLIDE 6: 三因子打分模型 ===== -->
+  <section class="slide" data-title="三因子打分">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="done">理解A股结构分化</li>
+        <li class="done">学会再平衡方法论</li>
+        <li class="done">运用三因子打分模型</li>
+        <li class="current">分析核心市场配置</li>
+        <li>评估日韩市场机会</li>
+        <li>制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
       </ul>
-    </div>
-  </div>
-  <div class="deck-footer-custom"><span>港股 · 配置权重 15%</span><span>08 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 9: 日韩分析 ===== -->
-<section class="slide">
-  <h2>日韩市场<span class="gradient-text">分析</span></h2>
-
-  <div class="data-grid-2" style="margin-top:20px;">
-    <div>
-      <div class="data-card" style="border-color:rgba(122,162,247,.25);">
-        <div class="label">🇯🇵 日经225</div>
-        <div class="value" style="font-size:44px;">66,588.12</div>
-        <div class="sub c-bad" style="font-size:22px;">-1.31%</div>
-      </div>
-      <div style="margin-top:16px;font-size:22px;line-height:1.8;color:var(--text-2);padding:0 8px;">
-        <div>· 日元升值压力抑制出口</div>
-        <div>· 估值中性，PE 16.8x</div>
-        <div>· 企业治理改善持续推进</div>
-        <div>· <span class="highlight">配置：10% + 5% 机动</span></div>
-      </div>
-    </div>
-    <div>
-      <div class="data-card" style="border-color:rgba(247,118,142,.35);">
-        <div class="label">🇰🇷 韩国KOSPI</div>
-        <div class="value c-bad" style="font-size:48px;">8,160.59</div>
-        <div class="sub c-bad" style="font-size:26px;font-weight:700;">-5.54% ⚠️</div>
-      </div>
-      <div style="margin-top:16px;font-size:22px;line-height:1.8;color:var(--text-2);padding:0 8px;">
-        <div>· 单日跌幅18个月最大</div>
-        <div>· RSI进入超卖区 &lt;25</div>
-        <div>· 半导体周期调整拖累</div>
-        <div>· <span style="color:var(--accent-3);font-weight:600;">逆向配置：10% + 5%</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:28px;display:flex;gap:20px;">
-    <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;">
-      <div style="font-size:20px;color:var(--text-3);">日股评分</div>
-      <div class="big-num" style="color:var(--accent);">5.98</div>
-      <div style="font-size:20px;color:var(--text-2);">标配 / 逢低吸纳</div>
-    </div>
-    <div style="flex:1;background:var(--surface);border:1px solid rgba(247,118,142,.25);border-radius:var(--radius);padding:24px;text-align:center;">
-      <div style="font-size:20px;color:var(--text-3);">韩股评分</div>
-      <div class="big-num" style="color:var(--accent-3);">4.98</div>
-      <div style="font-size:20px;color:var(--text-2);">低分逆向 / 超卖反弹</div>
-    </div>
-  </div>
-  <div class="deck-footer-custom"><span>日股 10%+5% · 韩股 10%+5% 逆向</span><span>09 / 10</span></div>
-</section>
-
-<!-- ===== SLIDE 10: FINAL CONFIG + RISK ===== -->
-<section class="slide">
-  <h2>最终配置 <span class="gradient-text">&amp; 风险提示</span></h2>
-
-  <div style="display:flex;gap:36px;margin-top:20px;">
-    <div style="flex:1;">
-      <div class="config-grid" style="gap:16px;">
-        <div class="config-item">
-          <div class="config-dot" style="background:var(--accent);"></div>
-          <div class="config-info"><div class="name">A股主板（上证+沪深300）</div><div class="pct">25% + 5% 机动</div></div>
+      <h5>打分规则</h5>
+      <p class="dim" style="font-size:14px;line-height:1.6">&gt;60 超配<br>40-60 标配<br>&lt;40 低配</p>
+    </aside>
+    <div class="main">
+      <p class="kicker">量化框架</p>
+      <h2 class="h2 mt-s">三因子打分模型</h2>
+      <p class="lede mt-m">科学分解资产吸引力为三个维度，加权合成综合得分，映射仓位决策。</p>
+      <div class="grid g3 mt-l">
+        <div class="concept-box" style="border-top:3px solid var(--accent)">
+          <h4>📈 动量因子 40%</h4>
+          <p class="dim" style="font-size:1.1em;line-height:1.6">近1M/3M/6M价格趋势<br>相对强弱指标 (RSI)<br>均线排列方向</p>
+          <p class="pill-academic" style="margin-top:8px">权重最高</p>
         </div>
-        <div class="config-item">
-          <div class="config-dot" style="background:var(--bad);"></div>
-          <div class="config-info"><div class="name">科创50 + 创业板指</div><div class="pct">5% − 10% 减持</div></div>
+        <div class="concept-box" style="border-top:3px solid var(--accent-2)">
+          <h4>📊 估值因子 35%</h4>
+          <p class="dim" style="font-size:1.1em;line-height:1.6">PE/PB 历史分位数<br>股息率吸引力<br>风险溢价水平</p>
+          <p class="pill-academic" style="margin-top:8px">判断安全边际</p>
         </div>
-        <div class="config-item">
-          <div class="config-dot" style="background:var(--good);"></div>
-          <div class="config-info"><div class="name">港股（恒生+国企）</div><div class="pct">15% 增配</div></div>
-        </div>
-        <div class="config-item">
-          <div class="config-dot" style="background:var(--accent-3);"></div>
-          <div class="config-info"><div class="name">韩国KOSPI</div><div class="pct">10% + 5% 逆向</div></div>
-        </div>
-        <div class="config-item">
-          <div class="config-dot" style="background:var(--accent-2);"></div>
-          <div class="config-info"><div class="name">日本日经225</div><div class="pct">10% + 5% 机动</div></div>
-        </div>
-        <div class="config-item">
-          <div class="config-dot" style="background:var(--good);"></div>
-          <div class="config-info"><div class="name">债券 · 防御底仓</div><div class="pct">30% + 5% 灵活</div></div>
+        <div class="concept-box" style="border-top:3px solid var(--accent-3)">
+          <h4>💧 流动性因子 25%</h4>
+          <p class="dim" style="font-size:1.1em;line-height:1.6">成交量/换手率趋势<br>北向/南向资金流向<br>市场宽度指标</p>
+          <p class="pill-academic" style="margin-top:8px">验证趋势可信度</p>
         </div>
       </div>
+      <div class="callout mt-m">
+        <b>总得分 = 动量×40% + 估值×35% + 流动性×25%。</b>得分 &gt; 60 → 超配；40-60 → 标配；&lt; 40 → 低配。
+      </div>
     </div>
+  </section>
 
-    <div style="flex:1;">
-      <div style="font-size:24px;color:var(--text-3);margin-bottom:12px;">⚠️ 风险提示</div>
-      <div class="risk-grid" style="gap:12px;">
-        <div class="risk-item risk-high">
-          <h4 style="color:var(--bad);">地缘政治风险</h4>
-          <p>台海/朝鲜半岛局势升级可能引发全市场波动</p>
+  <!-- ===== SLIDE 7: 核心市场配置分析 ===== -->
+  <section class="slide" data-title="配置分析">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="done">理解A股结构分化</li>
+        <li class="done">学会再平衡方法论</li>
+        <li class="done">运用三因子打分模型</li>
+        <li class="done">分析核心市场配置</li>
+        <li class="current">评估日韩市场机会</li>
+        <li>制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
+      </ul>
+      <h5>评分结果</h5>
+      <p class="dim" style="font-size:14px;line-height:1.6">A股主板得分最高<br>科创/创业得分最低</p>
+    </aside>
+    <div class="main">
+      <p class="kicker">配置分析</p>
+      <h2 class="h2 mt-s">核心市场三因子评分</h2>
+      <table class="data-table mt-m">
+        <thead>
+          <tr><th>市场板块</th><th>动量 40%</th><th>估值 35%</th><th>流动性 25%</th><th style="text-align:right">总得分</th><th style="text-align:center">建议</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>A股主板</b>（上证+沪深300）</td>
+            <td class="num">28</td><td class="num">30</td><td class="num">18</td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--accent-3)">76</td>
+            <td class="tc"><span class="pill-academic" style="background:rgba(45,125,110,.12);color:var(--accent-3);font-weight:700">超配 ↑</span></td>
+          </tr>
+          <tr>
+            <td><b>港股</b>（恒生+国企）</td>
+            <td class="num">22</td><td class="num">26</td><td class="num">16</td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--accent-3)">64</td>
+            <td class="tc"><span class="pill-academic" style="background:rgba(45,125,110,.12);color:var(--accent-3);font-weight:700">超配 ↑</span></td>
+          </tr>
+          <tr>
+            <td><b>科创+创业</b></td>
+            <td class="num">8</td><td class="num">10</td><td class="num">7</td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--accent)">25</td>
+            <td class="tc"><span class="pill-academic" style="background:rgba(196,89,63,.12);color:var(--accent);font-weight:700">低配 ↓</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="grid g2 mt-l">
+        <div class="concept-box" style="border-left:4px solid var(--accent-3)">
+          <h4 style="color:var(--accent-3)">A股主板：得分 76</h4>
+          <p class="dim">高股息+低估值双重支撑。上证指数仅跌0.74%，防御属性突出。动量与估值因子同时共振向上。</p>
         </div>
-        <div class="risk-item risk-high">
-          <h4 style="color:var(--bad);">流动性风险</h4>
-          <p>美联储意外鹰派可能导致亚太资金大规模外流</p>
-        </div>
-        <div class="risk-item risk-mid">
-          <h4 style="color:var(--warn);">政策风险</h4>
-          <p>中国监管政策变化可能影响特定板块估值</p>
-        </div>
-        <div class="risk-item risk-mid">
-          <h4 style="color:var(--warn);">汇率风险</h4>
-          <p>人民币/日元/韩元汇率波动影响跨境投资收益</p>
+        <div class="concept-box" style="border-left:4px solid var(--accent)">
+          <h4 style="color:var(--accent)">科创/创业：得分 25</h4>
+          <p class="dim">动量崩溃（科创-4.01%），估值仍偏高，流动性萎缩。三项因子全面走弱，需果断减仓。</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="margin-top:28px;text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
-    <div style="font-size:20px;color:var(--text-3);">免责声明</div>
-    <div style="font-size:18px;color:var(--text-2);margin-top:4px;">本报告仅供内部参考，不构成投资建议。过往表现不代表未来收益。投资有风险，入市需谨慎。</div>
-  </div>
-  <div class="deck-footer-custom"><span>配置结论 · 风险提示</span><span>10 / 10</span></div>
-</section>
+  <!-- ===== SLIDE 8: 日韩分析 ===== -->
+  <section class="slide" data-title="日韩分析">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="done">理解A股结构分化</li>
+        <li class="done">学会再平衡方法论</li>
+        <li class="done">运用三因子打分模型</li>
+        <li class="done">分析核心市场配置</li>
+        <li class="done">评估日韩市场机会</li>
+        <li class="current">制定最终配置方案</li>
+        <li>总结关键投资洞察</li>
+      </ul>
+      <h5>关键判断</h5>
+      <p class="dim" style="font-size:14px;line-height:1.6">韩国超跌机会显现<br>日本韧性保持标配</p>
+    </aside>
+    <div class="main">
+      <p class="kicker">跨境分析</p>
+      <h2 class="h2 mt-s">日韩市场深度研判</h2>
+      <div class="grid g2 mt-l">
+        <div class="concept-box" style="border-top:3px solid var(--accent-3)">
+          <h4>🇯🇵 日本 · 日经225</h4>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:2em;font-weight:700">66,588.12</p>
+          <p class="dim" style="font-size:1.1em">跌幅 <b style="color:var(--accent)">-1.31%</b></p>
+          <div style="margin-top:10px">
+            <div class="score-bar-wrap">
+              <span class="score-bar-label" style="font-size:0.85em">动量</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:55%;background:var(--accent-2)"></div></div>
+              <span class="score-bar-val" style="font-size:0.85em">22</span>
+            </div>
+            <div class="score-bar-wrap">
+              <span class="score-bar-label" style="font-size:0.85em">估值</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:60%;background:var(--accent-2)"></div></div>
+              <span class="score-bar-val" style="font-size:0.85em">21</span>
+            </div>
+            <div class="score-bar-wrap">
+              <span class="score-bar-label" style="font-size:0.85em">流动性</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:50%;background:var(--accent-2)"></div></div>
+              <span class="score-bar-val" style="font-size:0.85em">13</span>
+            </div>
+          </div>
+          <p class="dim mt-s" style="font-weight:700;color:var(--text-1)">总得分：56 → 标配</p>
+          <p class="dim" style="font-size:0.9em">日元汇率稳定，企业盈利韧性好，但涨幅空间有限。</p>
+        </div>
+        <div class="concept-box" style="border-top:3px solid var(--accent);border:2px solid rgba(196,89,63,.3);box-shadow:0 0 0 4px rgba(196,89,63,.08)">
+          <h4>🇰🇷 韩国 · KOSPI</h4>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:2em;font-weight:700;color:var(--accent)">8,160.59</p>
+          <p class="dim" style="font-size:1.1em">跌幅 <b style="color:var(--accent)">-5.54%</b> ⚠️</p>
+          <div style="margin-top:10px">
+            <div class="score-bar-wrap">
+              <span class="score-bar-label" style="font-size:0.85em">动量</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:25%;background:var(--accent)"></div></div>
+              <span class="score-bar-val" style="font-size:0.85em">10</span>
+            </div>
+            <div class="score-bar-wrap">
+              <span class="score-bar-label" style="font-size:0.85em">估值</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:50%;background:var(--accent-2)"></div></div>
+              <span class="score-bar-val" style="font-size:0.85em">18</span>
+            </div>
+            <div class="score-bar-wrap">
+              <span class="score-bar-label" style="font-size:0.85em">流动性</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:35%;background:var(--accent)"></div></div>
+              <span class="score-bar-val" style="font-size:0.85em">9</span>
+            </div>
+          </div>
+          <p class="dim mt-s" style="font-weight:700;color:var(--accent)">总得分：37 → 低配</p>
+          <p class="dim" style="font-size:0.9em">暴跌5.54%后估值吸引力上升，但动量极弱。建议小仓试探，等待企稳信号。</p>
+        </div>
+      </div>
+      <div class="callout mt-m">
+        <b>逆向思维：</b>韩国KOSPI暴跌后估值大幅折价，若企稳信号出现，性价比可能快速逆转。保持关注，但不急于抄底。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 9: 最终配置 ===== -->
+  <section class="slide" data-title="最终配置">
+    <aside class="sidebar">
+      <div class="brand">亚洲配置 · 报告</div>
+      <h5>本课目标</h5>
+      <ul class="obj-list">
+        <li class="done">掌握市场全景数据</li>
+        <li class="done">理解A股结构分化</li>
+        <li class="done">学会再平衡方法论</li>
+        <li class="done">运用三因子打分模型</li>
+        <li class="done">分析核心市场配置</li>
+        <li class="done">评估日韩市场机会</li>
+        <li class="done">制定最终配置方案</li>
+        <li class="current">总结关键投资洞察</li>
+      </ul>
+      <h5>配置摘要</h5>
+      <p class="dim" style="font-size:14px;line-height:1.6">股票 70%<br>债券 30%</p>
+    </aside>
+    <div class="main">
+      <p class="kicker">最终方案</p>
+      <h2 class="h2 mt-s">亚洲市场 · 资产配置表</h2>
+      <p class="lede mt-m">综合三因子打分 + 信号驱动再平衡，得出以下配置建议。括号内为相对基准的调整幅度。</p>
+      <table class="data-table mt-l" style="font-size:1.25em">
+        <thead>
+          <tr><th>配置类别</th><th style="text-align:right">目标权重</th><th style="text-align:center">调整</th><th>逻辑依据</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(45,125,110,.06)">
+            <td><b>🛡️ A股主板</b>（上证+沪深300）</td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--accent-3)">25%</td>
+            <td class="tc"><span style="color:var(--accent-3);font-weight:700;font-size:0.95em">+5% ↑</span></td>
+            <td>三因子得分76，动量+估值双重支撑</td>
+          </tr>
+          <tr style="background:rgba(196,89,63,.04)">
+            <td><b>⚡ 科创+创业</b></td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--accent)">5%</td>
+            <td class="tc"><span style="color:var(--accent);font-weight:700;font-size:0.95em">-10% ↓</span></td>
+            <td>得分仅25，动量崩溃，大幅减仓观望</td>
+          </tr>
+          <tr style="background:rgba(45,125,110,.04)">
+            <td><b>🇭🇰 港股</b>（恒生+国企）</td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--text-1)">15%</td>
+            <td class="tc"><span style="color:var(--text-2);font-weight:600">标配</span></td>
+            <td>得分64超配区间，但外部扰动保留余地</td>
+          </tr>
+          <tr>
+            <td><b>🇰🇷 韩国 KOSPI</b></td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--text-1)">10%</td>
+            <td class="tc"><span style="color:var(--accent-3);font-weight:700;font-size:0.95em">+5% ↑</span></td>
+            <td>超跌后估值诱人，逆向小幅加仓试探</td>
+          </tr>
+          <tr>
+            <td><b>🇯🇵 日本 日经225</b></td>
+            <td class="num" style="font-weight:800;font-size:1.15em;color:var(--text-1)">10%</td>
+            <td class="tc"><span style="color:var(--accent-3);font-weight:700;font-size:0.95em">+5% ↑</span></td>
+            <td>得分56标配偏上，日元资产分散风险</td>
+          </tr>
+          <tr style="background:var(--surface-2)">
+            <td><b>🏦 债券</b>（利率+信用）</td>
+            <td class="num" style="font-weight:800;font-size:1.2em;color:var(--accent-3)">30%</td>
+            <td class="tc"><span style="color:var(--accent-3);font-weight:700;font-size:0.95em">+5% ↑</span></td>
+            <td>防御垫底，股市波动期增配安全资产</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <b>配置逻辑：</b>股票总仓位70%分散于5个子板块，债券30%作为压舱石。当前环境以防御为主线，成长部分严格控制。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SLIDE 10: 总结 ===== -->
+  <section class="slide full" data-title="总结">
+    <p class="kicker">总结 · 关键洞察</p>
+    <h1 class="h1 mt-s">六大投资结论</h1>
+    <div class="grid g2 mt-l" style="gap:20px">
+      <div class="concept-box" style="font-size:1.2em">
+        <h4>① 风格切换确认</h4>
+        <p class="dim" style="font-size:1em">价值跑赢成长。上证-0.74% vs 科创-4.01%，差距3.27pp。减科技成长，增主板高股息。</p>
+      </div>
+      <div class="concept-box" style="font-size:1.2em">
+        <h4>② 量化框架先行</h4>
+        <p class="dim" style="font-size:1em">三因子（动量40%+估值35%+流动性25%）客观打分，避免情绪化决策。</p>
+      </div>
+      <div class="concept-box" style="font-size:1.2em">
+        <h4>③ 信号驱动调仓</h4>
+        <p class="dim" style="font-size:1em">当前适用信号驱动再平衡法。因子得分穿越临界值时果断行动，不等阈值触发。</p>
+      </div>
+      <div class="concept-box" style="font-size:1.2em">
+        <h4>④ 港股超配可期</h4>
+        <p class="dim" style="font-size:1em">恒生+国企总得分64，估值全球洼地。南向资金持续流入，维持15%配置。</p>
+      </div>
+      <div class="concept-box" style="font-size:1.2em">
+        <h4>⑤ 韩国逆向布局</h4>
+        <p class="dim" style="font-size:1em">KOSPI暴跌5.54%后估值折价明显，10%仓位逆向小幅布局，等企稳加仓。</p>
+      </div>
+      <div class="concept-box" style="font-size:1.2em">
+        <h4>⑥ 债券压舱护航</h4>
+        <p class="dim" style="font-size:1em">30%债券配置提供稳定收益，在市场波动期有效平滑组合回撤。</p>
+      </div>
+    </div>
+    <div class="callout mt-l" style="font-size:1.2em">
+      <b>行动纲领：</b>以防御为主线，价值为核心，量化信号为导航。亚洲市场分化加剧，正是精选配置的好时机。
+    </div>
+    <div class="deck-footer"><span>亚洲市场资产配置报告 · 2026年6月</span><span class="slide-number" data-current="10" data-total="10"></span></div>
+  </section>
 
 </div>
 
-<script src="assets/runtime.js"></script>
-<script src="assets/animations/fx-runtime.js"></script>
+<script>
+/* ===== RUNTIME.JS (inlined) ===== */
+(function () {
+  'use strict';
+
+  const ANIMS = ['fade-up','fade-down','fade-left','fade-right','rise-in','drop-in',
+    'zoom-pop','blur-in'];
+
+  function ready(fn){ if(document.readyState!='loading')fn(); else document.addEventListener('DOMContentLoaded',fn);}
+
+  function getPreviewIdx() {
+    const m = /[?&]preview=(\d+)/.exec(location.search || '');
+    return m ? parseInt(m[1], 10) - 1 : -1;
+  }
+
+  ready(function () {
+    const deck = document.querySelector('.deck');
+    if (!deck) return;
+    const slides = Array.from(deck.querySelectorAll('.slide'));
+    if (!slides.length) return;
+
+    const previewOnlyIdx = getPreviewIdx();
+    const isPreviewMode = previewOnlyIdx >= 0 && previewOnlyIdx < slides.length;
+
+    if (isPreviewMode) {
+      function showSlide(i) {
+        slides.forEach((s, j) => {
+          const active = (j === i);
+          s.classList.toggle('is-active', active);
+          s.style.display = active ? '' : 'none';
+          if (active) {
+            s.style.opacity = '1';
+            s.style.transform = 'none';
+            s.style.pointerEvents = 'auto';
+          }
+        });
+      }
+      showSlide(previewOnlyIdx);
+      const hideSel = '.progress-bar, .notes-overlay, .overview, .notes, aside.notes, .speaker-notes';
+      document.querySelectorAll(hideSel).forEach(el => { el.style.display = 'none'; });
+      document.documentElement.setAttribute('data-preview', '1');
+      document.body.setAttribute('data-preview', '1');
+      window.addEventListener('message', function(e) {
+        if (!e.data) return;
+        if (e.data.type === 'preview-goto') {
+          const n = parseInt(e.data.idx, 10);
+          if (n >= 0 && n < slides.length) showSlide(n);
+        }
+      });
+      try { window.parent && window.parent.postMessage({ type: 'preview-ready' }, '*'); } catch(e) {}
+      return;
+    }
+
+    let idx = 0;
+    const total = slides.length;
+
+    const CHANNEL_NAME = 'html-ppt-presenter-' + location.pathname;
+    let bc;
+    try { bc = new BroadcastChannel(CHANNEL_NAME); } catch(e) { bc = null; }
+
+    let bar = document.querySelector('.progress-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'progress-bar';
+      bar.innerHTML = '<span></span>';
+      document.body.appendChild(bar);
+    }
+    const barFill = bar.querySelector('span');
+
+    let notes = document.querySelector('.notes-overlay');
+    if (!notes) {
+      notes = document.createElement('div');
+      notes.className = 'notes-overlay';
+      document.body.appendChild(notes);
+    }
+
+    function go(n, fromRemote){
+      n = Math.max(0, Math.min(total-1, n));
+      slides.forEach((s,i) => {
+        s.classList.toggle('is-active', i===n);
+        s.classList.toggle('is-prev', i<n);
+      });
+      idx = n;
+      barFill.style.width = ((n+1)/total*100)+'%';
+      const numEl = document.querySelector('.slide-number');
+      if (numEl) { numEl.setAttribute('data-current', n+1); numEl.setAttribute('data-total', total); }
+      const note = slides[n].querySelector('.notes, aside.notes, .speaker-notes');
+      notes.innerHTML = note ? note.innerHTML : '';
+
+      const hashTarget = '#/'+(n+1);
+      if (location.hash !== hashTarget) {
+        history.replaceState(null,'', hashTarget);
+      }
+
+      slides[n].querySelectorAll('[data-anim]').forEach(el => {
+        const a = el.getAttribute('data-anim');
+        el.classList.remove('anim-'+a);
+        void el.offsetWidth;
+        el.classList.add('anim-'+a);
+      });
+
+      if (!fromRemote && bc) {
+        bc.postMessage({ type: 'go', idx: n });
+      }
+    }
+
+    if (bc) {
+      bc.onmessage = function(e) {
+        if (!e.data) return;
+        if (e.data.type === 'go' && typeof e.data.idx === 'number') {
+          go(e.data.idx, true);
+        }
+      };
+    }
+
+    function fullscreen(){ const el=document.documentElement;
+      if (!document.fullscreenElement) el.requestFullscreen&&el.requestFullscreen();
+      else document.exitFullscreen&&document.exitFullscreen();
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.metaKey||e.ctrlKey||e.altKey) return;
+      switch (e.key) {
+        case 'ArrowRight': case ' ': case 'PageDown': case 'Enter': go(idx+1); e.preventDefault(); break;
+        case 'ArrowLeft': case 'PageUp': case 'Backspace': go(idx-1); e.preventDefault(); break;
+        case 'Home': go(0); break;
+        case 'End': go(total-1); break;
+        case 'f': case 'F': fullscreen(); break;
+        case 'Escape': break;
+      }
+    });
+
+    function fromHash(){
+      const m = /^#\/(\d+)/.exec(location.hash||'');
+      if (m) go(Math.max(0, parseInt(m[1],10)-1));
+    }
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+    go(idx);
+  });
+})();
+</script>
 </body>
 </html>
