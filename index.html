@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亚洲市场资产配置分析 · 2026年6月</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/themes/tokyo-night.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+</head>
+<body data-theme-base="assets/themes/" data-themes="tokyo-night,editorial-serif,corporate-clean,dracula,nord,catppuccin-mocha,minimal-white,pitch-deck-vc,arctic-cool">
+
+<div class="deck">
+<!-- ===== SLIDE 1: COVER ===== -->
+<section class="slide is-active">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="kicker" style="font-size:22px;">2026年6月5日 · 资产配置策略</div>
+    <h1 class="large-title" style="margin-top:16px;">亚洲市场<br><span class="gradient-text">资产配置分析</span></h1>
+    <p class="title-sub">A股 · 港股 · 日股 · 韩股 —— 结构化分化下的防御反击策略</p>
+    <div style="margin-top:30px;display:flex;gap:20px;">
+      <span class="badge badge-down" style="font-size:22px;padding:6px 18px;">全市场下跌</span>
+      <span class="badge badge-up" style="font-size:22px;padding:6px 18px;">逆向配置窗口</span>
+    </div>
+  </div>
+  <div class="deck-footer-custom"><span>亚洲市场资产配置报告</span><span>01 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 2: MARKET SNAPSHOT ===== -->
+<section class="slide">
+  <h2>市场快照 <span style="color:var(--text-3);font-size:28px;">2026.06.05</span></h2>
+  <p class="lede" style="font-size:26px;margin-bottom:16px;">亚太主要股指普遍收跌，韩国市场重挫 -5.54%，A 股内部结构分化显著</p>
+  <table class="market-table">
+    <thead><tr><th>市场</th><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+    <tbody>
+      <tr><td>🇨🇳 A股</td><td>上证指数</td><td class="num">4,027.74</td><td class="chg neg">-0.74%</td></tr>
+      <tr><td>🇨🇳 A股</td><td>沪深300</td><td class="num">4,816.92</td><td class="chg neg">-1.79%</td></tr>
+      <tr><td>🇨🇳 A股</td><td>创业板指</td><td class="num">3,957.94</td><td class="chg neg">-3.20%</td></tr>
+      <tr><td>🇨🇳 A股</td><td style="color:var(--accent);">科创50</td><td class="num">1,668.33</td><td class="chg severe" style="color:var(--bad);font-size:28px;">-4.01%</td></tr>
+      <tr><td>🇨🇳 A股</td><td>中证500</td><td class="num">8,251.14</td><td class="chg neg">-1.26%</td></tr>
+      <tr><td>🇭🇰 港股</td><td>恒生指数</td><td class="num">24,961.95</td><td class="chg neg">-1.15%</td></tr>
+      <tr><td>🇭🇰 港股</td><td>恒生国企</td><td class="num">8,436.63</td><td class="chg neg">-0.77%</td></tr>
+      <tr><td>🇯🇵 日股</td><td>日经225</td><td class="num">66,588.12</td><td class="chg neg">-1.31%</td></tr>
+      <tr><td style="color:var(--bad);">🇰🇷 韩股</td><td style="color:var(--bad);">韩国KOSPI</td><td class="num" style="color:var(--bad);">8,160.59</td><td class="chg severe" style="color:var(--bad);font-size:30px;">-5.54%</td></tr>
+    </tbody>
+  </table>
+  <div class="deck-footer-custom"><span>数据来源: Wind / Bloomberg</span><span>02 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 3: A股分化 ===== -->
+<section class="slide">
+  <h2>A股<span class="gradient-text">结构分化</span>分析</h2>
+  <p class="lede" style="font-size:28px;">主板稳固 vs 成长崩塌 —— 内部差距高达 <span class="c-bad">3.27pp</span></p>
+
+  <div style="display:flex;gap:30px;margin-top:32px;">
+    <div style="flex:1;">
+      <div class="data-card negative" style="margin-bottom:16px;">
+        <div class="label">科创50 · 跌幅最大</div>
+        <div class="value" style="font-size:56px;">-4.01%</div>
+        <div class="sub">科技成长股遭遇集中抛售</div>
+      </div>
+      <div class="data-card negative">
+        <div class="label">创业板指</div>
+        <div class="value" style="font-size:48px;">-3.20%</div>
+        <div class="sub">中小盘成长同步承压</div>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="data-card warn-card" style="margin-bottom:16px;">
+        <div class="label">上证指数 · 相对抗跌</div>
+        <div class="value" style="color:var(--warn);font-size:48px;">-0.74%</div>
+        <div class="sub">大盘蓝筹提供防御支撑</div>
+      </div>
+      <div class="data-card warn-card">
+        <div class="label">沪深300</div>
+        <div class="value" style="color:var(--warn);font-size:42px;">-1.79%</div>
+        <div class="sub">权重股整体偏弱但可控</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card" style="margin-top:28px;">
+    <h3>核心洞察</h3>
+    <p>资金从高估值成长板块向低估值蓝筹迁移，市场风险偏好急剧收缩。科创50与上证指数差距达 <b>3.27pp</b>，为近三个月最大。</p>
+  </div>
+  <div class="deck-footer-custom"><span>结构化分化 · A股内部</span><span>03 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 4: 配置策略 ===== -->
+<section class="slide">
+  <h2>资产配置<span class="gradient-text">策略</span></h2>
+  <p class="lede" style="font-size:28px;">减成长 / 增价值 / 加防御 —— 三线并进</p>
+
+  <div class="analysis-row">
+    <div class="analysis-box bad-box">
+      <h4>🔻 减配</h4>
+      <ul>
+        <li>科创50 — 动量崩溃</li>
+        <li>创业板指 — 高估值承压</li>
+        <li>中小盘成长 — 流动性收缩</li>
+      </ul>
+    </div>
+    <div class="analysis-box good-box">
+      <h4>🔺 增配</h4>
+      <ul>
+        <li>A股主板 — 高股息红利</li>
+        <li>港股 — 估值洼地</li>
+        <li>债券 — 30% 防御底仓</li>
+      </ul>
+    </div>
+    <div class="analysis-box">
+      <h4>🔄 逆向</h4>
+      <ul>
+        <li>韩国KOSPI — 超卖反弹</li>
+        <li>日经225 — 逢低布局</li>
+        <li>现金保留 — 灵活机动</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:40px;margin-top:30px;align-items:center;">
+    <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 30px;">
+      <div style="font-size:22px;color:var(--text-3);margin-bottom:6px;">策略核心</div>
+      <div style="font-size:44px;font-weight:800;color:var(--accent);">防御反击</div>
+      <div style="font-size:22px;color:var(--text-2);margin-top:8px;">防守端：债券+高股息 = 安全垫<br>进攻端：港股+逆向韩日 = 弹性</div>
+    </div>
+    <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 30px;">
+      <div style="font-size:22px;color:var(--text-3);margin-bottom:6px;">债券配置</div>
+      <div style="font-size:70px;font-weight:800;color:var(--good);">30%</div>
+      <div style="font-size:20px;color:var(--text-2);">中短久期利率债 + 高等级信用</div>
+    </div>
+  </div>
+  <div class="deck-footer-custom"><span>三线策略 · 防御反击</span><span>04 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 5: 方法论 ===== -->
+<section class="slide">
+  <h2>分析<span class="gradient-text">方法论</span></h2>
+  <p class="lede" style="font-size:26px;">量化 + 定性双轮驱动，三维因子综合评分</p>
+
+  <div class="method-row" style="margin-top:40px;">
+    <div class="method-card">
+      <div class="m-num" style="color:var(--accent);">40%</div>
+      <div class="m-label" style="font-size:26px;">动量因子</div>
+      <div class="m-desc" style="font-size:20px;">20日/60日价格动量<br>相对强弱 RSI<br>行业轮动强度</div>
+    </div>
+    <div class="method-card">
+      <div class="m-num" style="color:var(--accent-2);">35%</div>
+      <div class="m-label" style="font-size:26px;">估值因子</div>
+      <div class="m-desc" style="font-size:20px;">PE/PB 分位数<br>股息率水平<br>PEG 成长调整</div>
+    </div>
+    <div class="method-card">
+      <div class="m-num" style="color:var(--accent-3);">25%</div>
+      <div class="m-label" style="font-size:26px;">流动性因子</div>
+      <div class="m-desc" style="font-size:20px;">成交额变化率<br>北向/外资流向<br>融资余额趋势</div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 30px;">
+    <div style="font-size:24px;color:var(--accent);margin-bottom:8px;">打分规则</div>
+    <div style="font-size:24px;line-height:1.8;color:var(--text-2);">
+      每个因子对8个标的独立打分（1-10分）→ 加权汇总 → 排名 → 分层配置
+    </div>
+  </div>
+  <div class="deck-footer-custom"><span>三因子模型 · 量化框架</span><span>05 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 6: 三因子打分 ===== -->
+<section class="slide">
+  <h2>三因子<span class="gradient-text">打分表</span></h2>
+  <p class="lede" style="font-size:26px;">动量崩塌拖累科创/创业，估值优势支撑港股和韩国逆向</p>
+  <table class="factor-table" style="margin-top:18px;">
+    <thead><tr><th>标的</th><th style="text-align:center;">动量 (40%)</th><th style="text-align:center;">估值 (35%)</th><th style="text-align:center;">流动性 (25%)</th><th style="text-align:center;">总分</th><th style="text-align:center;">评级</th></tr></thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600;">上证主板</td>
+        <td class="score c-warn">6.5</td><td class="score c-good">7.5</td><td class="score" style="color:var(--accent);">7.0</td>
+        <td class="total c-good">6.95</td><td style="color:var(--good);font-weight:700;font-size:24px;">增配</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">沪深300</td>
+        <td class="score" style="color:var(--warn);">5.5</td><td class="score c-good">7.0</td><td class="score" style="color:var(--accent);">6.5</td>
+        <td class="total" style="color:var(--text-1);">6.28</td><td style="color:var(--text-2);">标配</td>
+      </tr>
+      <tr style="background:rgba(247,118,142,.06);">
+        <td style="font-weight:600;">科创50</td>
+        <td class="score c-bad">2.5</td><td class="score c-bad">3.5</td><td class="score c-bad">3.0</td>
+        <td class="total c-bad">2.98</td><td style="color:var(--bad);font-weight:700;font-size:24px;">减配</td>
+      </tr>
+      <tr style="background:rgba(247,118,142,.04);">
+        <td style="font-weight:600;">创业板指</td>
+        <td class="score c-bad">3.0</td><td class="score" style="color:var(--warn);">4.5</td><td class="score c-bad">4.0</td>
+        <td class="total" style="color:var(--warn);">3.78</td><td style="color:var(--bad);font-weight:700;font-size:24px;">减配</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">恒生指数</td>
+        <td class="score" style="color:var(--warn);">5.0</td><td class="score c-good">8.5</td><td class="score" style="color:var(--accent);">6.5</td>
+        <td class="total c-good">6.60</td><td style="color:var(--good);font-weight:700;font-size:24px;">增配</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">日经225</td>
+        <td class="score" style="color:var(--warn);">5.5</td><td class="score" style="color:var(--accent);">6.5</td><td class="score" style="color:var(--accent);">6.0</td>
+        <td class="total" style="color:var(--text-1);">5.98</td><td style="color:var(--text-2);">标配</td>
+      </tr>
+      <tr style="background:rgba(158,206,106,.06);">
+        <td style="font-weight:600;">韩国KOSPI</td>
+        <td class="score c-bad">2.0</td><td class="score c-good">8.0</td><td class="score" style="color:var(--warn);">5.5</td>
+        <td class="total" style="color:var(--accent-3);">4.98</td><td style="color:var(--accent-3);font-weight:700;font-size:24px;">逆向</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="deck-footer-custom"><span>加权评分 = 动量×0.4 + 估值×0.35 + 流动性×0.25</span><span>06 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 7: 关键判断 ===== -->
+<section class="slide">
+  <h2>关键<span class="gradient-text">判断</span></h2>
+
+  <div style="display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
+      <div style="font-size:62px;margin-bottom:8px;">🔴</div>
+      <h3 style="color:var(--bad);font-size:34px;">判断一：科创/创业下行未止</h3>
+      <p style="font-size:24px;color:var(--text-2);line-height:1.7;">动量因子仅 2.5-3.0 分，成交额萎缩 30%+<br>融资余额连续5日净流出<br><span class="c-bad">建议减仓至 5%-10%</span></p>
+    </div>
+
+    <div style="flex:1;min-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
+      <div style="font-size:62px;margin-bottom:8px;">🟢</div>
+      <h3 style="color:var(--good);font-size:34px;">判断二：港股估值优势显著</h3>
+      <p style="font-size:24px;color:var(--text-2);line-height:1.7;">恒生PE仅9.2x，处于历史15%分位<br>南向资金持续净流入<br><span class="c-good">建议增配至 15%</span></p>
+    </div>
+
+    <div style="flex:1;min-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
+      <div style="font-size:62px;margin-bottom:8px;">🟡</div>
+      <h3 style="color:var(--warn);font-size:34px;">判断三：韩国超卖逆向机会</h3>
+      <p style="font-size:24px;color:var(--text-2);line-height:1.7;">-5.54% 单日跌幅为18个月最大<br>RSI进入超卖区（&lt;25）<br><span style="color:var(--accent-3);">建议逆向配置 10%+5%</span></p>
+    </div>
+  </div>
+  <div class="deck-footer-custom"><span>三大核心判断</span><span>07 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 8: 港股分析 ===== -->
+<section class="slide">
+  <h2>港股 <span style="color:var(--text-3);">·</span> <span class="gradient-text">深度分析</span></h2>
+  <div class="data-grid-2" style="margin-top:20px;">
+    <div>
+      <div class="data-card">
+        <div class="label">恒生指数</div>
+        <div class="value" style="font-size:48px;">24,961.95</div>
+        <div class="sub" style="color:var(--bad);font-size:22px;">-1.15%</div>
+      </div>
+      <div class="data-card" style="margin-top:14px;">
+        <div class="label">恒生国企指数</div>
+        <div class="value" style="font-size:48px;">8,436.63</div>
+        <div class="sub" style="color:var(--bad);font-size:22px;">-0.77%</div>
+      </div>
+    </div>
+    <div>
+      <div class="insight-card" style="margin-top:0;">
+        <h3>估值亮点</h3>
+        <p>恒生PE <span class="c-good">9.2x</span> — 处于近5年 <span class="c-good">15%</span> 分位<br>
+        股息率 <span class="c-good">4.1%</span> — 亚太最高之一<br>
+        南向资金月净流入 <span class="c-accent">+420亿</span> 港元</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="analysis-row" style="margin-top:28px;">
+    <div class="analysis-box good-box">
+      <h4>买入理由</h4>
+      <ul style="font-size:24px;line-height:2.2;">
+        <li>深度价值洼地</li>
+        <li>南向资金持续流入</li>
+        <li>国企改革红利释放</li>
+        <li>与A股相关性可控</li>
+      </ul>
+    </div>
+    <div class="analysis-box bad-box">
+      <h4>风险关注</h4>
+      <ul style="font-size:24px;line-height:2.2;">
+        <li>美联储政策不确定性</li>
+        <li>地缘政治溢价</li>
+        <li>港元流动性波动</li>
+      </ul>
+    </div>
+  </div>
+  <div class="deck-footer-custom"><span>港股 · 配置权重 15%</span><span>08 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 9: 日韩分析 ===== -->
+<section class="slide">
+  <h2>日韩市场<span class="gradient-text">分析</span></h2>
+
+  <div class="data-grid-2" style="margin-top:20px;">
+    <div>
+      <div class="data-card" style="border-color:rgba(122,162,247,.25);">
+        <div class="label">🇯🇵 日经225</div>
+        <div class="value" style="font-size:44px;">66,588.12</div>
+        <div class="sub c-bad" style="font-size:22px;">-1.31%</div>
+      </div>
+      <div style="margin-top:16px;font-size:22px;line-height:1.8;color:var(--text-2);padding:0 8px;">
+        <div>· 日元升值压力抑制出口</div>
+        <div>· 估值中性，PE 16.8x</div>
+        <div>· 企业治理改善持续推进</div>
+        <div>· <span class="highlight">配置：10% + 5% 机动</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="data-card" style="border-color:rgba(247,118,142,.35);">
+        <div class="label">🇰🇷 韩国KOSPI</div>
+        <div class="value c-bad" style="font-size:48px;">8,160.59</div>
+        <div class="sub c-bad" style="font-size:26px;font-weight:700;">-5.54% ⚠️</div>
+      </div>
+      <div style="margin-top:16px;font-size:22px;line-height:1.8;color:var(--text-2);padding:0 8px;">
+        <div>· 单日跌幅18个月最大</div>
+        <div>· RSI进入超卖区 &lt;25</div>
+        <div>· 半导体周期调整拖累</div>
+        <div>· <span style="color:var(--accent-3);font-weight:600;">逆向配置：10% + 5%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;display:flex;gap:20px;">
+    <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;">
+      <div style="font-size:20px;color:var(--text-3);">日股评分</div>
+      <div class="big-num" style="color:var(--accent);">5.98</div>
+      <div style="font-size:20px;color:var(--text-2);">标配 / 逢低吸纳</div>
+    </div>
+    <div style="flex:1;background:var(--surface);border:1px solid rgba(247,118,142,.25);border-radius:var(--radius);padding:24px;text-align:center;">
+      <div style="font-size:20px;color:var(--text-3);">韩股评分</div>
+      <div class="big-num" style="color:var(--accent-3);">4.98</div>
+      <div style="font-size:20px;color:var(--text-2);">低分逆向 / 超卖反弹</div>
+    </div>
+  </div>
+  <div class="deck-footer-custom"><span>日股 10%+5% · 韩股 10%+5% 逆向</span><span>09 / 10</span></div>
+</section>
+
+<!-- ===== SLIDE 10: FINAL CONFIG + RISK ===== -->
+<section class="slide">
+  <h2>最终配置 <span class="gradient-text">&amp; 风险提示</span></h2>
+
+  <div style="display:flex;gap:36px;margin-top:20px;">
+    <div style="flex:1;">
+      <div class="config-grid" style="gap:16px;">
+        <div class="config-item">
+          <div class="config-dot" style="background:var(--accent);"></div>
+          <div class="config-info"><div class="name">A股主板（上证+沪深300）</div><div class="pct">25% + 5% 机动</div></div>
+        </div>
+        <div class="config-item">
+          <div class="config-dot" style="background:var(--bad);"></div>
+          <div class="config-info"><div class="name">科创50 + 创业板指</div><div class="pct">5% − 10% 减持</div></div>
+        </div>
+        <div class="config-item">
+          <div class="config-dot" style="background:var(--good);"></div>
+          <div class="config-info"><div class="name">港股（恒生+国企）</div><div class="pct">15% 增配</div></div>
+        </div>
+        <div class="config-item">
+          <div class="config-dot" style="background:var(--accent-3);"></div>
+          <div class="config-info"><div class="name">韩国KOSPI</div><div class="pct">10% + 5% 逆向</div></div>
+        </div>
+        <div class="config-item">
+          <div class="config-dot" style="background:var(--accent-2);"></div>
+          <div class="config-info"><div class="name">日本日经225</div><div class="pct">10% + 5% 机动</div></div>
+        </div>
+        <div class="config-item">
+          <div class="config-dot" style="background:var(--good);"></div>
+          <div class="config-info"><div class="name">债券 · 防御底仓</div><div class="pct">30% + 5% 灵活</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1;">
+      <div style="font-size:24px;color:var(--text-3);margin-bottom:12px;">⚠️ 风险提示</div>
+      <div class="risk-grid" style="gap:12px;">
+        <div class="risk-item risk-high">
+          <h4 style="color:var(--bad);">地缘政治风险</h4>
+          <p>台海/朝鲜半岛局势升级可能引发全市场波动</p>
+        </div>
+        <div class="risk-item risk-high">
+          <h4 style="color:var(--bad);">流动性风险</h4>
+          <p>美联储意外鹰派可能导致亚太资金大规模外流</p>
+        </div>
+        <div class="risk-item risk-mid">
+          <h4 style="color:var(--warn);">政策风险</h4>
+          <p>中国监管政策变化可能影响特定板块估值</p>
+        </div>
+        <div class="risk-item risk-mid">
+          <h4 style="color:var(--warn);">汇率风险</h4>
+          <p>人民币/日元/韩元汇率波动影响跨境投资收益</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+    <div style="font-size:20px;color:var(--text-3);">免责声明</div>
+    <div style="font-size:18px;color:var(--text-2);margin-top:4px;">本报告仅供内部参考，不构成投资建议。过往表现不代表未来收益。投资有风险，入市需谨慎。</div>
+  </div>
+  <div class="deck-footer-custom"><span>配置结论 · 风险提示</span><span>10 / 10</span></div>
+</section>
+
+</div>
+
+<script src="assets/runtime.js"></script>
+<script src="assets/animations/fx-runtime.js"></script>
+</body>
+</html>
